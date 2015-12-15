@@ -1,0 +1,2 @@
+# sqlResultToExcel
+把在终端里从正式库里查询出的数据转成标准excel格式
