@@ -14,7 +14,8 @@ public class Main {
             reader = new BufferedReader(new FileReader(inputFile));
             String temp = null;
             String[] tempArray = null;
-            String[][] citys=CityList.citys;
+            String[][] citys = CityList.citys;
+            int cityIndex = -1;//城市那列的下标
             while ((temp = reader.readLine()) != null) {
                 temp = temp.replace(" ", "");
                 if (temp.contains("+")) {
@@ -22,13 +23,17 @@ public class Main {
                 }
                 table.addRow();
                 tempArray = temp.split("\\|");
+
                 for (int i = 0; i < tempArray.length; i++) {
                     String cell = tempArray[i];
-                    if(i==1){
+                    if (cell.contains("城市")) {
+                        cityIndex = i;
+                    }
+                    if (i == cityIndex) {
                         //对城市替换
-                        for (String[] tempCity:citys){
-                            if(cell.equals(tempCity[0])){
-                                cell=tempCity[1];
+                        for (String[] tempCity : citys) {
+                            if (cell.equals(tempCity[0])) {
+                                cell = tempCity[1];
                             }
                         }
                     }
@@ -43,7 +48,7 @@ public class Main {
             e.printStackTrace();
         }
         //输出excel
-        File outputFile = new File("/Users/lizhengdong/Desktop/给财务表格.xlsx");
+        File outputFile = new File("/Users/lizhengdong/Desktop/2015-11-21至2015-11-30未审核名单.xlsx");
         try {
             FileOutputStream outputStream = new FileOutputStream(outputFile);
             table.output(outputStream, new Date().toString());
