@@ -26,7 +26,7 @@ public class Main {
 
                 for (int i = 0; i < tempArray.length; i++) {
                     String cell = tempArray[i];
-                    if (cell.contains("城市")) {
+                    if (cell.trim().equals("城市")) {
                         cityIndex = i;
                     }
                     if (i == cityIndex) {
@@ -48,7 +48,7 @@ public class Main {
             e.printStackTrace();
         }
         //输出excel
-        File outputFile = new File("/Users/lizhengdong/Desktop/2015-11-21至2015-11-30未审核名单.xlsx");
+        File outputFile = new File("/Users/lizhengdong/Desktop/给财务数据_从上线到12月13日为止的.xlsx");
         try {
             FileOutputStream outputStream = new FileOutputStream(outputFile);
             table.output(outputStream, new Date().toString());
